@@ -379,7 +379,7 @@
 						</filesets>
 					</configuration>
 				</plugin>
-				<!-- 打jar包时需要把配置文件给排除在外 -->
+				<!-- 打jar包时配置所需的配置文件 -->
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-jar-plugin</artifactId>
