@@ -307,6 +307,7 @@
         <outputDirectory>src/main/webapp/WEB-INF/classes</outputDirectory>
         <testOutputDirectory>target/test-classes</testOutputDirectory>
         <finalName>${project.artifactId}</finalName>
+
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -353,14 +354,16 @@
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.2</version>
                 <configuration>
-                    <source>1.8</source>
-                    <target>1.8</target>
+                    <source>1.7</source>
+                    <target>1.7</target>
                     <encoding>UTF-8</encoding>
                     <!-- 解决sun包中 rt.jar找不到 -->
                     <compilerArgument>-XDignore.symbol.file</compilerArgument>
                 </configuration>
             </plugin>
         </plugins>
+
+
         <pluginManagement>
             <plugins>
                 <plugin>
