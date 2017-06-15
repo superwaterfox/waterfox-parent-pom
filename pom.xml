@@ -95,6 +95,8 @@
                 </plugins>
             </build>
         </profile>
+
+
     </profiles>
     <dependencyManagement>
         <dependencies>
@@ -324,32 +326,34 @@
                     </execution>
                 </executions>
             </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-javadoc-plugin</artifactId>
-                <version>2.7</version>
-                <configuration>
-                    <show>private</show>
-                    <nohelp>true</nohelp>
-                    <aggregate>true</aggregate>
-                    <charset>UTF-8</charset>
-                    <encoding>UTF-8</encoding>
-                    <docencoding>UTF-8</docencoding>
-                </configuration>
+            <!--<plugin>-->
+            <!--<groupId>org.apache.maven.plugins</groupId>-->
+            <!--<artifactId>maven-javadoc-plugin</artifactId>-->
+            <!--<version>2.7</version>-->
+            <!--<configuration>-->
+            <!--<show>private</show>-->
+            <!--<nohelp>true</nohelp>-->
+            <!--<aggregate>true</aggregate>-->
+            <!--<charset>UTF-8</charset>-->
+            <!--<encoding>UTF-8</encoding>-->
+            <!--<docencoding>UTF-8</docencoding>-->
+            <!--<javadocExecutable>${java.home}/../bin/javadoc</javadocExecutable>-->
+            <!--</configuration>-->
 
-                <executions>
-                    <execution>
-                        <id>attach-javadocs</id>
-                        <goals>
-                            <goal>jar</goal>
-                        </goals>
-                        <!--JDK8生成doc的机制要严谨的多，很多注释中的标记都是特殊字符，故去掉-->
-                        <configuration>
-                            <additionalparam>-Xdoclint:none</additionalparam>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
+            <!--<executions>-->
+            <!--<execution>-->
+            <!--<id>attach-javadocs</id>-->
+            <!--<goals>-->
+            <!--<goal>jar</goal>-->
+            <!--</goals>-->
+            <!--&lt;!&ndash;JDK8生成doc的机制要严谨的多，很多注释中的标记都是特殊字符，故去掉&ndash;&gt;-->
+            <!--<configuration>-->
+            <!--<javadocExecutable>${java.home}/../bin/javadoc</javadocExecutable>-->
+            <!--<additionalparam>-Xdoclint:none</additionalparam>-->
+            <!--</configuration>-->
+            <!--</execution>-->
+            <!--</executions>-->
+            <!--</plugin>-->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-resources-plugin</artifactId>
