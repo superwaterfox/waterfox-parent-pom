@@ -28,11 +28,11 @@ classes/
 Thumbs.db
 
 #datasource ignore
-db.properties
-generatorConfigMyBatis3.xml
+#db.properties
+#generatorConfigMyBatis3.xml
 
 #redis ignore
-spring-redis.xml
+#spring-redis.xml
 
 # package ignore (optional)
 # *.jar
