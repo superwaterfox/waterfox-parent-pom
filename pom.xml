@@ -33,71 +33,104 @@
         <jsqlparser.version>0.9.1</jsqlparser.version>
         <commons-fileupload.version>1.3.1</commons-fileupload.version>
         <jedis.version>2.7.2</jedis.version>
-        <solrj.version>4.10.3</solrj.version>
+        <solrj.version>4.10.4</solrj.version>
+
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
     </properties>
-    <profiles>
-        <!-- 配置copy-jar profile，直接复制jar文件到lib 调用命令示例 运行命令：clean compile -Pcopy-jar
-            编译直接打包源码 运行命令：clean compile -Pcopy-jar -Ppackage-class 可以不加 clean 运行命令：<br>
-            compile -Ppackage-class -->
-        <profile>
-            <id>copy-jar</id>
-            <build>
-                <plugins>
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-dependency-plugin</artifactId>
-                        <version>2.8</version>
-                        <executions>
-                            <execution>
-                                <phase>compile</phase>
-                                <goals>
-                                    <goal>copy-dependencies</goal>
-                                </goals>
-                                <configuration>
-                                    <outputDirectory>src/main/webapp/WEB-INF/lib</outputDirectory>
-                                    <excludeGroupIds>com.sun</excludeGroupIds>
-                                    <includeScope>runtime</includeScope>
-                                </configuration>
-                            </execution>
-                        </executions>
-                    </plugin>
-                </plugins>
-            </build>
-        </profile>
+    <dependencies>
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>servlet-api</artifactId>
+            <scope>provided</scope>
+            <version>2.5</version>
+        </dependency>
+        <!-- 单元测试 -->
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>${junit.version}</version>
+            <!--<scope>test</scope>-->
+        </dependency>
+        <dependency>
+            <groupId>log4j</groupId>
+            <artifactId>log4j</artifactId>
+            <version>1.2.16</version>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-log4j12</artifactId>
+            <version>${slf4j.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>commons-logging</groupId>
+            <artifactId>commons-logging</artifactId>
+            <version>${commons-logging.version}</version>
+        </dependency>
+    </dependencies>
+    <!--<profiles>-->
+    <!--&lt;!&ndash; 配置copy-jar profile，直接复制jar文件到lib 调用命令示例 运行命令：clean compile -Pcopy-jar-->
+    <!--编译直接打包源码 运行命令：clean compile -Pcopy-jar -Ppackage-class 可以不加 clean 运行命令：<br>-->
+    <!--compile -Ppackage-class &ndash;&gt;-->
+    <!--<profile>-->
+    <!--<id>copy-jar</id>-->
+    <!--<build>-->
+    <!--<plugins>-->
+    <!--<plugin>-->
+    <!--<groupId>org.apache.maven.plugins</groupId>-->
+    <!--<artifactId>maven-dependency-plugin</artifactId>-->
+    <!--<version>2.8</version>-->
+    <!--<executions>-->
+    <!--<execution>-->
+    <!--<phase>compile</phase>-->
+    <!--<goals>-->
+    <!--<goal>copy-dependencies</goal>-->
+    <!--</goals>-->
+    <!--<configuration>-->
+    <!--<outputDirectory>src/main/webapp/WEB-INF/lib</outputDirectory>-->
+    <!--<excludeGroupIds>com.sun</excludeGroupIds>-->
+    <!--<includeScope>runtime</includeScope>-->
+    <!--</configuration>-->
+    <!--</execution>-->
+    <!--</executions>-->
+    <!--</plugin>-->
+    <!--</plugins>-->
+    <!--</build>-->
+    <!--</profile>-->
 
 
-        <!-- 配置copy-jar profile，直接复制jar文件到lib 调用命令示例 clean compile -Ppackage-class -->
-        <profile>
-            <id>package-class</id>
-            <build>
-                <plugins>
-                    <!-- 打jar包时需要把配置文件给排除在外 -->
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-jar-plugin</artifactId>
-                        <version>2.4</version>
-                        <executions>
-                            <execution>
-                                <phase>compile</phase>
-                                <goals>
-                                    <goal>jar</goal>
-                                </goals>
-                                <configuration>
-                                    <outputDirectory>src/main/webapp/WEB-INF/lib</outputDirectory>
-                                    <includes>
-                                        <include>**/*.class</include>
-                                        <include>**/*Mapper.xml</include>
-                                    </includes>
-                                </configuration>
-                            </execution>
-                        </executions>
-                    </plugin>
-                </plugins>
-            </build>
-        </profile>
+    <!--&lt;!&ndash; 配置copy-jar profile，直接复制jar文件到lib 调用命令示例 clean compile -Ppackage-class &ndash;&gt;-->
+    <!--<profile>-->
+    <!--<id>package-class</id>-->
+    <!--<build>-->
+    <!--<plugins>-->
+    <!--&lt;!&ndash; 打jar包时需要把配置文件给排除在外 &ndash;&gt;-->
+    <!--<plugin>-->
+    <!--<groupId>org.apache.maven.plugins</groupId>-->
+    <!--<artifactId>maven-jar-plugin</artifactId>-->
+    <!--<version>2.4</version>-->
+    <!--<executions>-->
+    <!--<execution>-->
+    <!--<phase>compile</phase>-->
+    <!--<goals>-->
+    <!--<goal>jar</goal>-->
+    <!--</goals>-->
+    <!--<configuration>-->
+    <!--<outputDirectory>src/main/webapp/WEB-INF/lib</outputDirectory>-->
+    <!--<includes>-->
+    <!--<include>**/*.class</include>-->
+    <!--<include>**/*Mapper.xml</include>-->
+    <!--</includes>-->
+    <!--</configuration>-->
+    <!--</execution>-->
+    <!--</executions>-->
+    <!--</plugin>-->
+    <!--</plugins>-->
+    <!--</build>-->
+    <!--</profile>-->
 
 
-    </profiles>
+    <!--</profiles>-->
     <dependencyManagement>
         <dependencies>
             <!-- Apache工具组件 -->
@@ -126,11 +159,11 @@
                 <artifactId>commons-collections</artifactId>
                 <version>${commons-collections.version}</version>
             </dependency>
-            <dependency>
-                <groupId>commons-logging</groupId>
-                <artifactId>commons-logging</artifactId>
-                <version>${commons-logging.version}</version>
-            </dependency>
+            <!--<dependency>-->
+            <!--<groupId>commons-logging</groupId>-->
+            <!--<artifactId>commons-logging</artifactId>-->
+            <!--<version>${commons-logging.version}</version>-->
+            <!--</dependency>-->
             <dependency>
                 <groupId>commons-fileupload</groupId>
                 <artifactId>commons-fileupload</artifactId>
@@ -149,11 +182,11 @@
                 <version>${httpclient.version}</version>
             </dependency>
             <!-- 日志处理 -->
-            <dependency>
-                <groupId>org.slf4j</groupId>
-                <artifactId>slf4j-log4j12</artifactId>
-                <version>${slf4j.version}</version>
-            </dependency>
+            <!--<dependency>-->
+            <!--<groupId>org.slf4j</groupId>-->
+            <!--<artifactId>slf4j-log4j12</artifactId>-->
+            <!--<version>${slf4j.version}</version>-->
+            <!--</dependency>-->
             <!-- Mybatis -->
             <dependency>
                 <groupId>org.mybatis</groupId>
@@ -282,150 +315,113 @@
                 <artifactId>jedis</artifactId>
                 <version>${jedis.version}</version>
             </dependency>
-            <!-- solr客户端 -->
-            <dependency>
-                <groupId>org.apache.solr</groupId>
-                <artifactId>solr-solrj</artifactId>
-                <version>${solrj.version}</version>
-            </dependency>
         </dependencies>
     </dependencyManagement>
-    <dependencies>
-        <!-- 单元测试 -->
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>${junit.version}</version>
-            <!-- <scope>test</scope> -->
-        </dependency>
-    </dependencies>
-    <build>
-        <sourceDirectory>src/main/java</sourceDirectory>
-        <testSourceDirectory>src/test/java</testSourceDirectory>
-        <resources>
-            <resource>
-                <directory>src/main/resources</directory>
-            </resource>
-        </resources>
-        <outputDirectory>src/main/webapp/WEB-INF/classes</outputDirectory>
-        <testOutputDirectory>target/test-classes</testOutputDirectory>
-        <finalName>${project.artifactId}</finalName>
 
-        <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-source-plugin</artifactId>
-                <version>2.1.2</version>
-                <executions>
-                    <execution>
-                        <id>attach-sources</id>
-                        <phase>verify</phase>
-                        <goals>
-                            <goal>jar-no-fork</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
+
+    <!--<build>-->
+        <!--<sourceDirectory>src/main/java</sourceDirectory>-->
+        <!--<testSourceDirectory>src/test/java</testSourceDirectory>-->
+
+        <!--&lt;!&ndash;主资源目录&ndash;&gt;-->
+        <!--<resources>-->
+            <!--<resource>-->
+                <!--&lt;!&ndash; 设定主资源目录  &ndash;&gt;-->
+                <!--<directory>src/main/resources</directory>-->
+            <!--</resource>-->
+        <!--</resources>-->
+        <!--<outputDirectory>src/main/webapp/WEB-INF/classes</outputDirectory>-->
+        <!--<testOutputDirectory>target/test-classes</testOutputDirectory>-->
+        <!--<finalName>${project.artifactId}</finalName>-->
+
+        <!--<plugins>-->
             <!--<plugin>-->
-            <!--<groupId>org.apache.maven.plugins</groupId>-->
-            <!--<artifactId>maven-javadoc-plugin</artifactId>-->
-            <!--<version>2.7</version>-->
-            <!--<configuration>-->
-            <!--<show>private</show>-->
-            <!--<nohelp>true</nohelp>-->
-            <!--<aggregate>true</aggregate>-->
-            <!--<charset>UTF-8</charset>-->
-            <!--<encoding>UTF-8</encoding>-->
-            <!--<docencoding>UTF-8</docencoding>-->
-            <!--<javadocExecutable>${java.home}/../bin/javadoc</javadocExecutable>-->
-            <!--</configuration>-->
-
-            <!--<executions>-->
-            <!--<execution>-->
-            <!--<id>attach-javadocs</id>-->
-            <!--<goals>-->
-            <!--<goal>jar</goal>-->
-            <!--</goals>-->
-            <!--&lt;!&ndash;JDK8生成doc的机制要严谨的多，很多注释中的标记都是特殊字符，故去掉&ndash;&gt;-->
-            <!--<configuration>-->
-            <!--<javadocExecutable>${java.home}/../bin/javadoc</javadocExecutable>-->
-            <!--<additionalparam>-Xdoclint:none</additionalparam>-->
-            <!--</configuration>-->
-            <!--</execution>-->
-            <!--</executions>-->
+                <!--<groupId>org.apache.maven.plugins</groupId>-->
+                <!--<artifactId>maven-source-plugin</artifactId>-->
+                <!--<version>2.1.2</version>-->
+                <!--<executions>-->
+                    <!--<execution>-->
+                        <!--<id>attach-sources</id>-->
+                        <!--<phase>verify</phase>-->
+                        <!--<goals>-->
+                            <!--<goal>jar-no-fork</goal>-->
+                        <!--</goals>-->
+                    <!--</execution>-->
+                <!--</executions>-->
             <!--</plugin>-->
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-resources-plugin</artifactId>
-                <version>2.5</version>
-                <configuration>
-                    <encoding>UTF-8</encoding>
-                </configuration>
-            </plugin>
-            <!-- java编译插件,小心maven对高版本的兼容性不是很好，可以切换1.6 -->
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.2</version>
-                <configuration>
-                    <source>1.8</source>
-                    <target>1.8</target>
-                    <encoding>UTF-8</encoding>
-                    <!-- 解决sun包中 rt.jar找不到 -->
-                    <compilerArgument>-XDignore.symbol.file</compilerArgument>
-                </configuration>
-            </plugin>
-        </plugins>
+            <!--<plugin>-->
+                <!--<groupId>org.apache.maven.plugins</groupId>-->
+                <!--<artifactId>maven-resources-plugin</artifactId>-->
+                <!--<version>2.6</version>-->
+                <!--<configuration>-->
+                    <!--<encoding>UTF-8</encoding>-->
+                <!--</configuration>-->
+            <!--</plugin>-->
+            <!--&lt;!&ndash; java编译插件,小心maven对高版本的兼容性不是很好，可以切换1.6 &ndash;&gt;-->
+            <!--<plugin>-->
+                <!--<groupId>org.apache.maven.plugins</groupId>-->
+                <!--<artifactId>maven-compiler-plugin</artifactId>-->
+                <!--<version>3.2</version>-->
+                <!--<configuration>-->
+                    <!--<source>1.8</source>-->
+                    <!--<target>1.8</target>-->
+                    <!--<encoding>UTF-8</encoding>-->
+                    <!--&lt;!&ndash; 解决sun包中 rt.jar找不到 &ndash;&gt;-->
+                    <!--<compilerArgument>-XDignore.symbol.file</compilerArgument>-->
+                <!--</configuration>-->
+            <!--</plugin>-->
+        <!--</plugins>-->
 
 
-        <pluginManagement>
-            <plugins>
-                <plugin>
-                    <artifactId>maven-clean-plugin</artifactId>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <version>2.4.1</version>
-                    <configuration>
-                        <filesets>
-                            <fileset>
-                                <directory>src/main/webapp/WEB-INF/lib</directory>
-                                <includes>
-                                    <include>**/*.jar</include>
-                                </includes>
-                                <excludes>
-                                    <exclude>src/main/webapp/WEB-INF/classes/beforeload/payType.properties</exclude>
-                                    <exclude>src/main/webapp/WEB-INF/classes/beforeload/rate.properties</exclude>
-                                </excludes>
-                                <followSymlinks>false</followSymlinks>
-                            </fileset>
-                        </filesets>
-                    </configuration>
-                </plugin>
-                <!-- 打jar包时配置所需的配置文件 -->
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-jar-plugin</artifactId>
-                    <version>2.4</version>
-                    <executions>
-                        <execution>
-                            <phase>package</phase>
-                            <goals>
-                                <goal>jar</goal>
-                            </goals>
-                            <configuration>
-                                <outputDirectory>src/main/webapp/WEB-INF/lib</outputDirectory>
-                                <includes>
-                                    <include>**/*.class</include>
-                                    <include>**/*Mapper.xml</include>
-                                </includes>
-                                <excludes>
-                                    <exclude>**/*Test.class</exclude>
-                                </excludes>
-                            </configuration>
-                        </execution>
-                    </executions>
-                </plugin>
-            </plugins>
+        <!--<pluginManagement>-->
+            <!--<plugins>-->
+                <!--<plugin>-->
+                    <!--<artifactId>maven-clean-plugin</artifactId>-->
+                    <!--<groupId>org.apache.maven.plugins</groupId>-->
+                    <!--<version>2.4.1</version>-->
+                    <!--<configuration>-->
+                        <!--<filesets>-->
+                            <!--<fileset>-->
+                                <!--<directory>src/main/webapp/WEB-INF/lib</directory>-->
+                                <!--<includes>-->
+                                    <!--<include>**/*.jar</include>-->
+                                <!--</includes>-->
+                                <!--<excludes>-->
+                                    <!--<exclude>src/main/webapp/WEB-INF/classes/beforeload/payType.properties</exclude>-->
+                                    <!--<exclude>src/main/webapp/WEB-INF/classes/beforeload/rate.properties</exclude>-->
+                                <!--</excludes>-->
+                                <!--<followSymlinks>false</followSymlinks>-->
+                            <!--</fileset>-->
+                        <!--</filesets>-->
+                    <!--</configuration>-->
+                <!--</plugin>-->
+                <!--&lt;!&ndash; 打jar包时配置所需的配置文件 &ndash;&gt;-->
+                <!--<plugin>-->
+                    <!--<groupId>org.apache.maven.plugins</groupId>-->
+                    <!--<artifactId>maven-jar-plugin</artifactId>-->
+                    <!--<version>2.4</version>-->
+                    <!--<executions>-->
+                        <!--<execution>-->
+                            <!--<phase>package</phase>-->
+                            <!--<goals>-->
+                                <!--<goal>jar</goal>-->
+                            <!--</goals>-->
+                            <!--<configuration>-->
+                                <!--<outputDirectory>src/main/webapp/WEB-INF/lib</outputDirectory>-->
+                                <!--<includes>-->
+                                    <!--<include>**/*.class</include>-->
+                                    <!--<include>**/*Mapper.xml</include>-->
+                                <!--</includes>-->
+                                <!--<excludes>-->
+                                    <!--<exclude>**/*Test.class</exclude>-->
+                                <!--</excludes>-->
+                            <!--</configuration>-->
+                        <!--</execution>-->
+                    <!--</executions>-->
+                <!--</plugin>-->
+            <!--</plugins>-->
 
-        </pluginManagement>
-    </build>
+        <!--</pluginManagement>-->
+    <!--</build>-->
+
 </project>
